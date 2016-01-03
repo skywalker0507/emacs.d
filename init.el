@@ -1,6 +1,9 @@
 ;;隐藏工具栏
 (tool-bar-mode -1)
 
+;可以设置开启的时候不显示欢迎界面：
+(setq inhibit-startup-message t)
+
 ;;关闭警告声音
  (setq ring-bell-function 'ignore)
  
@@ -10,6 +13,14 @@
 
 (setq-default cursor-type 'bar) ; 设置光标为竖线 
 ;;(setq-default cursor-type 'box) ; 设置光标为方块 
+
+
+;; 显示时间，格式如下  
+(display-time-mode 1)  
+(setq display-time-24hr-format t)  
+(setq display-time-day-and-date t)  
+  
+(transient-mark-mode t)  
 
 
 
@@ -39,8 +50,8 @@ auto-complete
 auto-complete-clang
 autopair
 org-mode
-rainbow-mode
-   
+rainbow-mode 
+smex
 ))	               
 
 ;
@@ -154,3 +165,11 @@ rainbow-mode
   (lambda () (rainbow-mode 1)))
 
 (my-global-rainbow-mode 1)
+
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                  ; when Smex is auto-initialized on its first run.
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+
