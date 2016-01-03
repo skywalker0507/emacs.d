@@ -124,8 +124,22 @@ rainbow-mode
 
 (require 'org)
 (setq org-src-fontify-natively t)
-(setq org-ditaa-jar-path "/home/liuqiang/.emacs.d/el-get/org-mode/contrib/scripts/ditaa.jar"
-)
+;(setq org-ditaa-jar-path "/home/liuqiang/.emacs.d/el-get/org-mode/contrib/scripts/ditaa.jar"
+;)
+
+
+
+(add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
+
+; Make babel results blocks lowercase
+(setq org-babel-results-keyword "results")
+
+(defun bh/display-inline-images ()
+  (condition-case nil
+      (org-display-inline-images)
+    (error nil)))
+
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ditaa . t))) ; this line activates ditaa
